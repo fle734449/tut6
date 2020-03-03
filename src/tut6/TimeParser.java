@@ -125,6 +125,52 @@ public class TimeParser {
 			assertEquals(43200, parseTimeToSeconds("12:00:00 pm"));
 	   }
 	   
+	   
+	   @Test
+	   public void testBranch6() {
+		   Assertions.assertThrows(IllegalArgumentException.class, new Executable() {
+			   public void execute() throws Throwable {
+				   assertEquals(46800, parseTimeToSeconds("12:00:90 am"));
+			   }
+		    });		
+	   }
+	   
+	   
+	   @Test
+	   public void testBranch7() {
+		   Assertions.assertThrows(IllegalArgumentException.class, new Executable() {
+			   public void execute() throws Throwable {
+				   assertEquals(46800, parseTimeToSeconds("12:-90:00 pm"));
+			   }
+		    });		
+	   }
+	   
+	   @Test
+	   public void testBranch8() {
+		   Assertions.assertThrows(IllegalArgumentException.class, new Executable() {
+			   public void execute() throws Throwable {
+				   assertEquals(46800, parseTimeToSeconds("12:90:00 pm"));
+			   }
+		    });		
+	   }
+	   
+	   @Test
+	   public void testBranch9() {
+		   Assertions.assertThrows(IllegalArgumentException.class, new Executable() {
+			   public void execute() throws Throwable {
+				   assertEquals(46800, parseTimeToSeconds("-01:00:00 am"));
+			   }
+		    });		
+	   }
+	   
+	   @Test
+	   public void testBranch10() {
+		   Assertions.assertThrows(IllegalArgumentException.class, new Executable() {
+			   public void execute() throws Throwable {
+				   assertEquals(46800, parseTimeToSeconds("12:00:-90 pm"));
+			   }
+		    });		
+	   }
 	   /**
 	     * Path Coverage Test Suite
 	     */ 
@@ -174,8 +220,9 @@ public class TimeParser {
 	   public void testPath7() {
 		   Assertions.assertThrows(IllegalArgumentException.class, new Executable() {
 			   public void execute() throws Throwable {
-				   assertEquals(46800, parseTimeToSeconds("12:00:90 am"));
+				   assertEquals(46800, parseTimeToSeconds("12:00:-90 pm"));
 			   }
 		    });		
 	   }
+	   
 	}
